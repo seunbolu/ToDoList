@@ -31,6 +31,7 @@ namespace ToDoList.Models
               new Status { StatusId = "open", Name = "Open" },
               new Status { StatusId = "closed", Name = "Completed" }
               
+
               ) ;
         }
     }
