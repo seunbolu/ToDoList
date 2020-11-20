@@ -28,8 +28,8 @@ namespace ToDoList.Models
               );
 
             modelBuilder.Entity<Status>().HasData(
-              new Status { StausId = "open", Name = "Open" },
-              new Status { StausId = "closed", Name = "Completed" }
+              new Status { StatusId = "open", Name = "Open" },
+              new Status { StatusId = "closed", Name = "Completed" }
               ) ;
         }
     }

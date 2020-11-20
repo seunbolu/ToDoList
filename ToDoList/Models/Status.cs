@@ -7,7 +7,7 @@ namespace ToDoList.Models
 {
     public class Status
     {
-        public string StausId { get; set; }
+        public string StatusId { get; set; }
         public string Name { get; set; }
     }
 }
