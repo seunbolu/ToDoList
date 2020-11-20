@@ -30,6 +30,7 @@ namespace ToDoList.Models
             modelBuilder.Entity<Status>().HasData(
               new Status { StatusId = "open", Name = "Open" },
               new Status { StatusId = "closed", Name = "Completed" }
+              
               ) ;
         }
     }
