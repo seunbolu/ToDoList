@@ -38,4 +38,4 @@ namespace ToDoList.Models
         public bool IsToday => Due.ToLower() == "today";
     }
 }
-}
+
