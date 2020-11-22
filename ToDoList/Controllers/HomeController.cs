@@ -51,6 +51,54 @@ namespace ToDoList.Controllers
         }
 
         [HttpGet]
-        public IActionResult Add(  )
+        public IActionResult Add()
+        {
+            var model = new ToDoViewModel();
+            model.Categories = context.Categories.ToList();
+            model.Statuses = context.Statuses.ToList();
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult Add(ToDoViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                context.toDos.Add(model.CurrentTask);
+                context.SaveChanges();
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                model.Categories = context.Categories.ToList();
+                model.Statuses = context.Statuses.ToList();
+                return View(model);
+            }
+           
+        }
+        [HttpPost]
+        public IActionResult EditDelete([FromRoute] string id, ToDo selected)
+        {
+            if (selected.StatusId == null)
+                context.toDos.Remove(selected);
+            else
+            {
+                string newStatusId = selected.StatusId;
+                selected = context.toDos.Find(selected.Id);
+                selected.StatusId = newStatusId;
+                context.toDos.Update(selected);
+            }
+
+            context.SaveChanges();
+
+            return RedirectToAction("Index", "Home", new { ID = id });
+        }
+
+        [HttpPost]
+        public IActionResult Filter(string[] filter)
+        {
+            string id = string.Join('-', filter);
+            return RedirectToAction("Index", "Home", new { ID = id });
+        }
     }
+
 }
